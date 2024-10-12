@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { GeistSans } from "geist/font/sans";
 
+import { cn } from "@/lib/utils";
+
 import "./globals.css";
 
 const geistSans = GeistSans;
@@ -18,7 +20,7 @@ const RootLayout = ({
 }>) => {
     return (
         <html lang="en">
-            <body className={`${geistSans.variable} antialiased`}>{children}</body>
+            <body className={cn("bg-background antialiased", geistSans.variable)}>{children}</body>
         </html>
     );
 };
