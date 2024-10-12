@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { GeistSans } from "geist/font/sans";
 
+import { Providers } from "@/components/providers";
+import { SiteHeader } from "@/components/site-header";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -20,7 +22,19 @@ const RootLayout = ({
 }>) => {
     return (
         <html lang="en">
-            <body className={cn("bg-background antialiased", geistSans.variable)}>{children}</body>
+            <body
+                className={cn(
+                    "min-h-screen bg-background font-sans antialiased",
+                    geistSans.variable
+                )}
+            >
+                <Providers>
+                    <div className="relative flex min-h-screen flex-col bg-background">
+                        <SiteHeader />
+                        <main className="flex-1">{children}</main>
+                    </div>
+                </Providers>
+            </body>
         </html>
     );
 };
