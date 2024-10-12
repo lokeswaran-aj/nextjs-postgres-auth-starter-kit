@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const NotFound = () => {
     return (
@@ -13,12 +12,9 @@ const NotFound = () => {
                     deleted.
                 </p>
                 <div className="mt-6">
-                    <Link
-                        href="/"
-                        className={cn(buttonVariants({ variant: "default", size: "sm" }))}
-                    >
-                        Go to Homepage
-                    </Link>
+                    <Button asChild size="sm">
+                        <Link href="/">Go to Homepage</Link>
+                    </Button>
                 </div>
             </div>
         </div>

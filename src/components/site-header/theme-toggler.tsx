@@ -6,9 +6,7 @@ import { useTheme } from "next-themes";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-type Props = {};
-
-export const ThemeToggler = (props: Props) => {
+export const ThemeToggler = () => {
     const { theme, setTheme } = useTheme();
     return (
         <div

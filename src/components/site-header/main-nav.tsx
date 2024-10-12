@@ -7,7 +7,7 @@ import { Icons } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-export function MainNav() {
+export const MainNav = () => {
     const pathname = usePathname();
 
     const navLinks = [
@@ -26,6 +26,7 @@ export function MainNav() {
             <nav className="flex items-center gap-4 text-sm lg:gap-6">
                 {navLinks.map((link) => (
                     <Link
+                        key={link.name}
                         href={link.href}
                         className={cn(
                             "transition-colors hover:text-foreground/80",
@@ -38,4 +39,4 @@ export function MainNav() {
             </nav>
         </div>
     );
-}
+};

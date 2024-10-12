@@ -8,9 +8,9 @@ import { Icons } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import { Button } from "./ui/button";
-import { ScrollArea } from "./ui/scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { Button } from "../ui/button";
+import { ScrollArea } from "../ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
 export const MobileNav = () => {
     const [open, setOpen] = useState(false);
