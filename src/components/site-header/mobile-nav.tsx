@@ -12,15 +12,13 @@ import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
-export const MobileNav = () => {
+type Props = {
+    navLinks: { name: string; href: string }[];
+};
+export const MobileNav = (props: Props) => {
+    const { navLinks } = props;
     const [open, setOpen] = useState(false);
 
-    const navLinks = [
-        {
-            name: "Profile",
-            href: "/profile",
-        },
-    ];
     return (
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>

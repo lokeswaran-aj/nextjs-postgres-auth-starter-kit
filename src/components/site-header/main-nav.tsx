@@ -7,15 +7,12 @@ import { Icons } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-export const MainNav = () => {
+type Props = {
+    navLinks: { name: string; href: string }[];
+};
+export const MainNav = (props: Props) => {
+    const { navLinks } = props;
     const pathname = usePathname();
-
-    const navLinks = [
-        {
-            name: "Profile",
-            href: "/profile",
-        },
-    ];
 
     return (
         <div className="mr-4 hidden md:flex">
