@@ -1,18 +1,27 @@
 {
     "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
-    "plugins": ["check-file"],
+    "plugins": ["check-file", "n"],
     "rules": {
         "prefer-arrow-callback": "error",
         "func-style": ["error", "expression", { "allowArrowFunctions": true }],
-        "@typescript-eslint/promise-function-async": "error",
         "@typescript-eslint/prefer-function-type": "error",
         "prefer-template": "error",
+        "n/no-process-env": "error",
         "check-file/filename-naming-convention": [
             "error",
             { "**/*.{ts,tsx}": "KEBAB_CASE" },
             { "ignoreMiddleExtensions": true }
         ],
         "check-file/folder-naming-convention": ["error", { "src/**": "KEBAB_CASE" }],
-        "comma-dangle": ["error", "always"]
+        "comma-dangle": [
+            "error",
+            {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "always-multiline",
+                "functions": "never"
+            }
+        ]
     }
 }
