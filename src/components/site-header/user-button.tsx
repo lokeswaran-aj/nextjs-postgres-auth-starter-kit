@@ -2,8 +2,7 @@ import Link from "next/link";
 
 import { LogOut, User as UserIcon } from "lucide-react";
 import { User } from "next-auth";
-
-import { signOut } from "@/auth";
+import { signOut } from "next-auth/react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
@@ -43,16 +42,12 @@ export default function UserButton(props: Props) {
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                    <form
-                        action={async () => {
-                            "use server";
-                            await signOut({ redirectTo: "/" });
-                        }}
+                    <button
+                        onClick={() => signOut({ redirectTo: "/" })}
+                        className="flex w-full items-center"
                     >
-                        <button type="submit" className="flex w-full items-center">
-                            <LogOut className="mr-2 h-4 w-4" /> Sign Out
-                        </button>
-                    </form>
+                        <LogOut className="mr-2 h-4 w-4" /> Sign Out
+                    </button>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

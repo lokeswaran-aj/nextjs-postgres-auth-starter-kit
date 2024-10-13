@@ -7,6 +7,7 @@ import { db } from "./db";
 import { accounts, sessions, users } from "./db/schema";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+    trustHost: true,
     theme: {
         logo: "/nextjs-logo.png",
     },

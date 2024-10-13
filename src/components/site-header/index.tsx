@@ -1,20 +1,23 @@
+"use client";
+
 import Link from "next/link";
 
+import { Loader2 } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
+
 import { siteConfig } from "@/config/site";
-import { getSession } from "@/lib/get-user";
 import { cn } from "@/lib/utils";
 
 import { Icons } from "../icons";
-import { buttonVariants } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
-import { SignIn } from "./signin-button";
 import { ThemeToggler } from "./theme-toggler";
 import UserButton from "./user-button";
 
-export const SiteHeader = async () => {
-    const session = await getSession();
-    const user = session?.user;
+export const SiteHeader = () => {
+    const session = useSession();
+    const user = session.data?.user;
 
     const navLinks = [
         {
@@ -56,7 +59,15 @@ export const SiteHeader = async () => {
                             </div>
                         </Link>
                         <ThemeToggler />
-                        {user ? <UserButton user={user} /> : <SignIn />}
+                        {session.status === "loading" ? (
+                            <Loader2 className="h-8 w-8 animate-spin" />
+                        ) : user ? (
+                            <UserButton user={user} />
+                        ) : (
+                            <Button onClick={async () => signIn()} size="sm" type="submit">
+                                Sign in
+                            </Button>
+                        )}
                     </nav>
                 </div>
             </div>
