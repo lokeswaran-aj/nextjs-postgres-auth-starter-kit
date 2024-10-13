@@ -1,17 +1,10 @@
-import { redirect } from "next/navigation";
-
 import { User } from "next-auth";
 
-import { auth } from "@/auth";
 import { ProfileDisplay } from "@/components/profile/profile-display";
+import { getUser } from "@/lib/get-user";
 
 const Profile = async () => {
-    const session = await auth();
-    const user = session?.user;
-
-    if (!user) {
-        redirect("/api/auth/signin?callbackUrl=/profile");
-    }
+    const user = await getUser("/profile");
 
     return <ProfileDisplay user={user as User} />;
 };

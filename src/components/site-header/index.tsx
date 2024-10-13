@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { auth } from "@/auth";
 import { siteConfig } from "@/config/site";
+import { getSession } from "@/lib/get-user";
 import { cn } from "@/lib/utils";
 
 import { Icons } from "../icons";
@@ -13,7 +13,7 @@ import { ThemeToggler } from "./theme-toggler";
 import UserButton from "./user-button";
 
 export const SiteHeader = async () => {
-    const session = await auth();
+    const session = await getSession();
     const user = session?.user;
 
     const navLinks = [
