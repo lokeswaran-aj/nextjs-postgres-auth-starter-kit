@@ -1,15 +1,21 @@
 import Link from "next/link";
 
+import { auth } from "@/auth";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
+import { SignIn } from "../auth/signin-button";
 import { Icons } from "../icons";
 import { buttonVariants } from "../ui/button";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
 import { ThemeToggler } from "./theme-toggler";
+import UserButton from "./user-button";
 
-export const SiteHeader = () => {
+export const SiteHeader = async () => {
+    const session = await auth();
+    const user = session?.user;
+
     const navLinks = [
         {
             name: "Dashboard",
@@ -22,7 +28,7 @@ export const SiteHeader = () => {
                 <MainNav navLinks={navLinks} />
                 <MobileNav navLinks={navLinks} />
                 <div className="flex items-center justify-center">
-                    <nav className="flex items-center gap-1">
+                    <nav className="flex items-center gap-2">
                         <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
                             <div
                                 className={cn(
@@ -50,6 +56,7 @@ export const SiteHeader = () => {
                             </div>
                         </Link>
                         <ThemeToggler />
+                        {user ? <UserButton user={user} /> : <SignIn />}
                     </nav>
                 </div>
             </div>
