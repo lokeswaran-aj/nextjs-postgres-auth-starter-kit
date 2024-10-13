@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 
 import { Providers } from "@/components/providers";
 import { SiteHeader } from "@/components/site-header";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -32,6 +33,7 @@ const RootLayout = ({
                     <div className="relative flex min-h-screen flex-col bg-background">
                         <SiteHeader />
                         <main className="flex-1">{children}</main>
+                        <Toaster />
                     </div>
                 </Providers>
             </body>

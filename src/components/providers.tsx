@@ -1,5 +1,6 @@
 import React from "react";
 
+import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 
 type Props = {
@@ -14,7 +15,7 @@ export const Providers = (props: Props) => {
             enableSystem={false}
             disableTransitionOnChange
         >
-            {props.children}
+            <SessionProvider>{props.children}</SessionProvider>
         </ThemeProvider>
     );
 };

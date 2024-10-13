@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { LogOut, Settings } from "lucide-react";
+import { LogOut, User as UserIcon } from "lucide-react";
 import { User } from "next-auth";
 
 import { signOut } from "@/auth";
@@ -16,16 +16,17 @@ import {
     DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-interface UserButtonProps {
+type Props = {
     user: User;
-}
+};
 
-export default function UserButton({ user }: UserButtonProps) {
+export default function UserButton(props: Props) {
+    const { user } = props;
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Avatar className="h-8 w-8">
-                    <AvatarImage src={user.image as string} />
+                    <AvatarImage src={user.image as string} loading="eager" />
                     <AvatarFallback className="font-bold">{user.name?.[0]}</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
@@ -34,9 +35,9 @@ export default function UserButton({ user }: UserButtonProps) {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                     <DropdownMenuItem asChild>
-                        <Link href="/settings">
-                            <Settings className="mr-2 h-4 w-4" />
-                            <span>Settings</span>
+                        <Link href="/profile">
+                            <UserIcon className="mr-2 h-4 w-4" />
+                            <span>Profile</span>
                         </Link>
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
@@ -45,7 +46,7 @@ export default function UserButton({ user }: UserButtonProps) {
                     <form
                         action={async () => {
                             "use server";
-                            await signOut();
+                            await signOut({ redirectTo: "/" });
                         }}
                     >
                         <button type="submit" className="flex w-full items-center">

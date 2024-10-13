@@ -4,11 +4,11 @@ import { auth } from "@/auth";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import { SignIn } from "../auth/signin-button";
 import { Icons } from "../icons";
 import { buttonVariants } from "../ui/button";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
+import { SignIn } from "./signin-button";
 import { ThemeToggler } from "./theme-toggler";
 import UserButton from "./user-button";
 
