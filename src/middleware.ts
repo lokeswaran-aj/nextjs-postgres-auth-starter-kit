@@ -1,5 +1,10 @@
-import NextAuth from "next-auth";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-import authConfig from "./auth.config";
+export const middleware = (request: NextRequest) => {
+    return NextResponse.redirect(new URL("/home", request.url));
+};
 
-export const { auth: middleware } = NextAuth(authConfig);
+export const config = {
+    matcher: "/dashboard/:path*",
+};
