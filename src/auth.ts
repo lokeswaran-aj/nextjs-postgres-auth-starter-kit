@@ -7,11 +7,13 @@ import { db } from "./db";
 import { accounts, sessions, users } from "./db/schema";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+    theme: {
+        logo: "/nextjs-logo.png",
+    },
     adapter: DrizzleAdapter(db, {
         usersTable: users,
         accountsTable: accounts,
         sessionsTable: sessions,
     }),
     providers: [Google, GitHub],
-    debug: true,
 });
