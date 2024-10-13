@@ -1,17 +1,12 @@
 "use client";
 
-import Link from "next/link";
-
 import { Loader2 } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-
-import { Icons } from "../icons";
-import { Button, buttonVariants } from "../ui/button";
+import { Button } from "../ui/button";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
+import SocialLinks from "./social-links";
 import { ThemeToggler } from "./theme-toggler";
 import UserButton from "./user-button";
 
@@ -32,32 +27,7 @@ export const SiteHeader = () => {
                 <MobileNav navLinks={navLinks} />
                 <div className="flex items-center justify-center">
                     <nav className="flex items-center gap-2">
-                        <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
-                            <div
-                                className={cn(
-                                    buttonVariants({
-                                        variant: "ghost",
-                                    }),
-                                    "h-8 w-8 px-0"
-                                )}
-                            >
-                                <Icons.gitHub className="h-4 w-4" />
-                                <span className="sr-only">GitHub</span>
-                            </div>
-                        </Link>
-                        <Link href={siteConfig.links.twitter} target="_blank" rel="noreferrer">
-                            <div
-                                className={cn(
-                                    buttonVariants({
-                                        variant: "ghost",
-                                    }),
-                                    "h-8 w-8 px-0"
-                                )}
-                            >
-                                <Icons.twitter className="h-4 w-4 fill-current" />
-                                <span className="sr-only">Twitter</span>
-                            </div>
-                        </Link>
+                        <SocialLinks />
                         <ThemeToggler />
                         {session.status === "loading" ? (
                             <Loader2 className="h-8 w-8 animate-spin" />
