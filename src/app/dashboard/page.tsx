@@ -2,8 +2,10 @@ import { CreditCard, DollarSign, LayoutDashboard, Settings, User, Users } from "
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getUser } from "@/lib/get-user";
 
-const Dashboard = () => {
+const Dashboard = async () => {
+    await getUser("/dashboard");
     return (
         <div className="flex h-screen bg-background">
             {/* Sidebar */}
