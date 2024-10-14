@@ -79,16 +79,11 @@ const EditProfileForm = (props: Props) => {
                                     type="button"
                                     variant="outline"
                                     disabled={form.formState.isSubmitting}
-                                    onClick={() => router.back()}
+                                    onClick={() => router.push("/profile")}
                                 >
                                     Back
                                 </Button>
-                                <Button
-                                    type="submit"
-                                    disabled={
-                                        form.formState.isSubmitting || !form.formState.isDirty
-                                    }
-                                >
+                                <Button type="submit" disabled={form.formState.isSubmitting}>
                                     Submit
                                 </Button>
                             </div>
