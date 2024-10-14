@@ -1,12 +1,9 @@
-import { LogOut } from "lucide-react";
 import { User } from "next-auth";
 
-import { signOut } from "@/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-import EditButton from "./edit-button";
+import { EditButton, LogoutButton } from "./profile-buttons";
 
 type Props = {
     user: User;
@@ -48,17 +45,7 @@ export const ProfileDisplay = (props: Props) => {
                 </CardContent>
                 <CardFooter className="flex items-center justify-evenly">
                     <EditButton />
-                    <form
-                        action={async () => {
-                            "use server";
-                            await signOut({ redirectTo: "/" });
-                        }}
-                        className="w-1/3"
-                    >
-                        <Button size="lg" type="submit" className="flex items-center">
-                            <LogOut className="mr-2 h-4 w-4" /> Sign Out
-                        </Button>
-                    </form>
+                    <LogoutButton />
                 </CardFooter>
             </Card>
         </div>

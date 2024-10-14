@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { GeistSans } from "geist/font/sans";
+import { SessionProvider } from "next-auth/react";
 
 import { Providers } from "@/components/providers";
 import { SiteHeader } from "@/components/site-header";
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     description: "A basic starter template created by Lokeswaran Aruljothy",
 };
 
-const RootLayout = ({
+const RootLayout = async ({
     children,
 }: Readonly<{
     children: React.ReactNode;
@@ -29,13 +30,15 @@ const RootLayout = ({
                     geistSans.variable
                 )}
             >
-                <Providers>
-                    <div className="relative flex min-h-screen flex-col bg-background">
-                        <SiteHeader />
-                        <main className="flex-1">{children}</main>
-                        <Toaster />
-                    </div>
-                </Providers>
+                <SessionProvider>
+                    <Providers>
+                        <div className="relative flex min-h-screen flex-col bg-background">
+                            <SiteHeader />
+                            <main className="flex-1">{children}</main>
+                            <Toaster />
+                        </div>
+                    </Providers>
+                </SessionProvider>
             </body>
         </html>
     );
